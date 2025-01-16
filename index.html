@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animated Buttons</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="button-container">
+        <button class="animated-button">
+            <span class="icon">&#9733;</span>
+            <span class="text">Hover Me</span>
+        </button>
+        <button class="animated-button">
+            <span class="icon">&#9993;</span>
+            <span class="text">Contact Us</span>
+        </button>
+        <button class="animated-button">
+            <span class="icon">&#128293;</span>
+            <span class="text">Get Started</span>
+        </button>
+    </div>
+
+    <script>
+        document.querySelectorAll('.animated-button').forEach(button => {
+            button.addEventListener('click', function (e) {
+                const x = e.clientX - e.target.offsetLeft;
+                const y = e.clientY - e.target.offsetTop;
+
+                const ripple = document.createElement('span');
+                ripple.classList.add('ripple');
+                ripple.style.left = `${x}px`;
+                ripple.style.top = `${y}px`;
+
+                this.appendChild(ripple);
+
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+            });
+        });
+    </script>
+</body>
+</html>
